@@ -56,7 +56,7 @@
     "lint-staged": "^3.4.1",
     "objection": "^1.0.0",
     "pre-commit": "^1.2.2",
-    "sqlite3": "^3.1.8"
+    "sqlite3": "^3.1.13"
   },
   "peerDependencies": {
     "objection": ">=1.0.0"

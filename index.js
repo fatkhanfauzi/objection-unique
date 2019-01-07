@@ -6,6 +6,7 @@
 
 const isEmpty = require('lodash.isempty');
 const isNil = require('lodash.isnil');
+const _ = require('lodash');
 const util = require('util');
 
 /**
@@ -78,14 +79,16 @@ module.exports = options => {
 
       getQuery(update, queryOptions) {
         return options.fields.reduce((queries, field, index) => {
-          if (isNil(this[field])) {
+          const objField = this[field] || this[_.camelCase(field)];
+
+          if (isNil(this[objField])) {
             return queries;
           }
 
           const knex = Model.knex();
           const query = knex(this.constructor.tableName)
             .select()
-            .where(field, this[field])
+            .where(field, this[objField])
             .limit(1);
 
           if (update) {
